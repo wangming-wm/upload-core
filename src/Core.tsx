@@ -1,10 +1,15 @@
 
 import React, { Component, ChangeEvent, RefObject } from 'react';
-import { UploadProps, UploadState } from './interface';
+import { UploadProps, UploadState, T } from './interface';
 
 class Upload extends Component<UploadProps, UploadState> {
 
   $input: RefObject<any> = React.createRef();
+
+  static defaultProps = {
+    beforeUpload: T,
+    onChange: T,
+  }
 
   triggerUpload = () => {
     console.log('trigger upload');
@@ -12,8 +17,11 @@ class Upload extends Component<UploadProps, UploadState> {
   }
 
   change = (event: ChangeEvent<HTMLInputElement>) => {
+    const { beforeUpload } = this.props;
     const rawFileLists: FileList = event.target.files;
     const files = Array.from(rawFileLists);
+    beforeUpload && beforeUpload(files);
+
   }
 
   render() {
