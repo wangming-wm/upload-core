@@ -1,22 +1,19 @@
 
-import React, { Component } from 'react';
-
-interface File {
-  name?: string;
-}
-
-interface UploadProps {
-  name?: string;
-}
-
-interface UploadState {
-  files: Array<File>;
-}
+import React, { Component, ChangeEvent, RefObject } from 'react';
+import { UploadProps, UploadState } from './interface';
 
 class Upload extends Component<UploadProps, UploadState> {
 
+  $input: RefObject<any> = React.createRef();
+
   triggerUpload = () => {
     console.log('trigger upload');
+    this.$input.current.click();
+  }
+
+  change = (event: ChangeEvent<HTMLInputElement>) => {
+    const rawFileLists: FileList = event.target.files;
+    const files = Array.from(rawFileLists);
   }
 
   render() {
@@ -24,13 +21,17 @@ class Upload extends Component<UploadProps, UploadState> {
     return (
       <>
         {
-          children && React.Children.map(children, (child) => (
+          children && React.Children.map(children, (child: React.ReactElement<any>) => (
             React.cloneElement(child, {
               onClick: this.triggerUpload
             })
           ))
         }
-        <input type="file" />
+        <input
+          ref={this.$input}
+          type="file"
+          onChange={this.change}
+        />
       </>
     )
   }
