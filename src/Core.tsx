@@ -1,8 +1,39 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 
-export interface CoreProps { test: string; };
+interface File {
+  name?: string;
+}
 
-const Core = (props: CoreProps) => <div>hah</div>;
+interface UploadProps {
+  name?: string;
+}
 
-export default Core;
+interface UploadState {
+  files: Array<File>;
+}
+
+class Upload extends Component<UploadProps, UploadState> {
+
+  triggerUpload = () => {
+    console.log('trigger upload');
+  }
+
+  render() {
+    const { children } = this.props;
+    return (
+      <>
+        {
+          children && React.Children.map(children, (child) => (
+            React.cloneElement(child, {
+              onClick: this.triggerUpload
+            })
+          ))
+        }
+        <input type="file" />
+      </>
+    )
+  }
+}
+
+export default Upload;

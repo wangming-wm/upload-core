@@ -3,5 +3,8 @@
     "@babel/env",     // 可以简写
     "@babel/react",
     "@babel/typescript"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
   ]
 }
