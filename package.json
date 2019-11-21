@@ -1,11 +1,15 @@
 {
-  "name": "upload-core",
-  "version": "1.0.0",
+  "name": "@mingyun/upload-core",
+  "version": "0.0.1-alpha.3",
   "description": "只关注上传",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./config/server.js"
+    "start": "node ./config/server.js",
+    "build": "rm -rf dist && webpack --profile --color --config config/webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -34,10 +38,14 @@
     "react-dom": "^16.12.0",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4"
+  },
+  "peerDependencies": {
+    "react": "^16.x.x"
   }
 }

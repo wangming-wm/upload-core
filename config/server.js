@@ -10,7 +10,7 @@ const chalk = require('chalk');
 const runServer = async (port, host) => {
   const compiler = await Webpack(webpackConfig);
   const devServerOption = {
-    noInfo: true,
+    //noInfo: true,
     stats: {
       colors: true,
     },

@@ -10,7 +10,6 @@ module.exports = {
   output: {
     filename: '[name].js',
   },
-
   plugins: [
     // html
     new HtmlWebpackPlugin({
